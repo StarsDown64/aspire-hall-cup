@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKN Kiosk</title>
+    <style>
+        .row {
+            display: flex;
+            flex-direction: row;
+            width: 100%; 
+            height: 50%;
+        }
+        h2, h3, p {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+        }
+        p {
+            font-weight: 400;
+        }
+        #hknlogo {
+            width: 75%;
+        }
+        .subrow {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            justify-content: space-between;
+        }
+        .subrow p {
+            margin: 0;
+        }
+        .panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        #top-left, #bottom-left {
+            width: 22.5%!important;
+            justify-content: space-evenly;
+        }
+        #bottom-left p {
+            text-align: center;
+        }
+        #top-left, #top-right {
+            border-bottom: 1px solid gray;
+        }
+        #top-right {
+            width: 75.5%!important;
+            padding: 1%;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+        #top-right .busroute {
+            width: 30%;
+            height: auto;
+            border: 1px solid rgba(255, 128, 64, 0.25);
+            border-radius: 2%;
+            padding: 1%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1%;
+        }
+        .busroute .busnum { margin: 0.5%; width: 100%; font-size: 1.5vw } 
+        .busroute .busdue { margin: 0.5%; font-size: 1.5vw } 
+        .busroute .busname { margin: 0.5%; width: 100%; font-size: 1vw } 
+        html {
+            width: 100vw;
+            height: 100vh;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        #bottom-right {
+            background-color: rgba(5, 5, 40);
+        }
+        #bottom-right h2, #bottom-right h3, #bottom-right p {
+            color: #eee;
+        }
+        #top-right {
+            background-color: rgba(64, 9, 0);
+        }
+        #top-right h2, #top-right h3, #top-right p {
+            color: #eee;
+        }
+        #bottom-right {
+            align-items: center;
+            justify-content: center;
+        }
+        #bottom-right .row {
+            height: 95%;
+            align-items: center;
+            justify-content: space-evenly;
+        } 
+        #bottom-right .row .col {
+            width: 50%;
+        }
+        #bottom-right .row .col:last-child {
+            width: 40%;
+            margin-right: 5px;
+        }
+        #clocktime {
+            font-family: Arial;
+            font-size: 2.25vw;
+        }
+        .clocktext {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5vw;
+            margin: 5px 0 5px 0;
+        }
+        .worldtime {
+            width: 27.5%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 1px solid rgba(64, 128, 255, 0.5);
+            border-radius: 3%;
+            padding: 1.1%;
+            margin-bottom: 0.75%;
+        }
+        .worldtime * {
+            margin: 8px 0 8px 0;
+            font-size: 1.2vw;
+        }
+        /* @keyframes anim-ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(98vw, 0, 0); }
+        }
+        #ticker {
+            animation: anim-ticker 4s linear infinite;
+        } */
+    </style>
+</head>
+<body>
+    <div class="row" style="height: calc(7% - 1px);  background: black; border-bottom: 1px solid gray; display: flex; align-items: center;">
+        <p id="ticker" style="margin-top: 1.1%; margin-left: 1%; color: gold; font-size: 1vw">
+            Your <b>biweekly active meetings</b> are Wednesdays at 6pm. Next one is <b>Jan 26th</b>!
+        </p>
+    </div>
+    <div class="row" style="height: 50%">
+        <div class="panel" id="top-left">
+            <h2 style="margin: 2px 0 2px 0; font-size: 1.5vw">Welcome to</h2>
+            <img id="hknlogo" src="hkn.png" style="width: 50%">
+            <div style="margin-top: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center">
+                <h3 style="margin: 0; font-size: 1vw">EE 24 - Open 7:30 AM to 5:00 PM</h3>
+                <h3 style="margin: 0; font-size: 1vw; text-align: center;">Bagels, Donuts and Coffee since 1906!</h3>
+            </div>
+            <div style="margin-top: 5px; display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 90%">
+                <div style="margin-top: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center">
+                    <img src="bagelcam.gif" style="width: 116px">
+                    <p style="margin: 0; font-size: 1vw">Try our BagelCam!</p>
+                </div>
+                <div style="margin-top: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center">
+                    <img src="home.gif" style="width: 116px">
+                    <p style="margin: 0; font-size: 1vw">Visit HKN online!</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel" id="top-right">
+            <div class="busroute">
+                <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center">
+                    <h3 class="busnum">Electrical Engineering</h3>
+                    <p class="busname">Bus Stop</p>
+                </div>
+                <p class="busdue">&nbsp;</p>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="height: 43%">
+        <!-- <div class="panel" id="bottom-left">
+            <h2>Updates</h2>
+            <p>Want to know if bagels/donuts are still available?  <br>Visit <a href="https://bit.ly/bagelcam">bit.ly/bagelcam</a></p>
+            <img src="index.gif">
+            <p>Has the LHC destroyed the Earth yet?<br><b>NO</b></p>
+            <p>I honestly have no idea what else to put here</p>
+        </div> -->
+        <div class="panel" id="bottom-right" class="col">
+            <div class="row">
+                <div class="col" style="width: 35%">
+                    <h2 class="clocktext" id="clocktime">00:00:00 am</h2>
+                    <h3 class="clocktext" id="clockdate">Friday, November 19, 2021</h3>
+                    <a class="weatherwidget-io" href="https://forecast7.com/en/40d43n86d91/west-lafayette/?unit=us" data-label_1="WEST LAFAYETTE" data-label_2="Indiana, USA" data-theme="dark" data-basecolor="#000028">WEST LAFAYETTE Indiana, USA</a>
+                    <script>
+                    !function(d,s,id){
+                        var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){
+                            js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);
+                            // fjs.document.head.appendChild(cssLink); 
+                        }
+                    }(document,'script','weatherwidget-io-js');
+                    </script>
+                    <p style="text-align: center; font-size: 1vw">Courtesy of weatherwidget.io</p>
+                </div>
+                <div class="row" style="flex-wrap: wrap; width: 55%; align-items: center;">
+                    <div class="worldtime" timezone="America/Chicago">
+                        <h3>Chicago</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="America/Los_Angeles">
+                        <h3>Los Angeles</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="America/Sao_Paulo">
+                        <h3>Rio de Janeiro</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Atlantic/Reykjavik">
+                        <h3>Reykjavik</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Europe/London">
+                        <h3>London</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Europe/Paris">
+                        <h3>Paris</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Africa/Johannesburg">
+                        <h3>Johannesburg</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Asia/Dubai">
+                        <h3>Dubai</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Asia/Kolkata">
+                        <h3>New Delhi</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Europe/Moscow">
+                        <h3>Moscow</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Asia/Hong_Kong">
+                        <h3>Beijing</h3><p>00:00 am</p>
+                    </div>
+                    <div class="worldtime" timezone="Australia/Sydney">
+                        <h3>Sydney</h3><p>00:00 am</p>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script>
+        function getTime() {
+            return new Promise(async (resolve, reject) => {
+                var resp = await fetch("https://worldtimeapi.org/api/ip")
+                var timeData = await resp.json() 
+                resolve(timeData.datetime);
+            })
+        }
+        function syncBusData () {
+            console.log("Synced at " + new Date().toLocaleTimeString());
+            fetch('busdata').then(v => v.json()).then(j => {
+                window.buscontent = j;
+                if (window.buscontent.routeStopSchedules.length == 0) {
+                    Array.from(document.querySelectorAll(".busroute")).slice(1).forEach(e => {
+                        e.remove();
+                    });
+                    var clone = Array.from(document.querySelectorAll(".busroute")).slice(-1)[0].cloneNode(true);
+                    clone.querySelector(".busnum").innerHTML = "No buses. ";
+                    clone.querySelector(".busname").innerHTML = "Either there really are no buses, or something is terribly wrong with this page.";
+                    document.querySelector("#top-right").appendChild(clone);
+                    return;
+                }
+                if (Array.from(document.querySelectorAll(".busroute")).length > 1) {
+                    Array.from(document.querySelectorAll(".busroute")).slice(1).forEach(e => {
+                        e.remove();
+                    });
+                }
+                window.buscontent.routeStopSchedules.forEach(route => {
+                    var clone = Array.from(document.querySelectorAll(".busroute")).slice(-1)[0].cloneNode(true);
+                    clone.querySelector(".busnum").innerHTML = "Route " + route.routeNumber;
+                    clone.querySelector(".busname").innerHTML = route.routeName;
+                    var departsAt = new Date(route.stopTimes[0].estimatedDepartTimeUtc);
+                    var now = new Date();
+                    var diff = departsAt - now;
+                    // if arriving in the next minute, say due
+                    if (diff > 60000) {
+                        var min = parseInt(diff / 60000);
+                        clone.querySelector(".busdue").innerHTML = `${min} min`;
+                    }
+                    // if arriving after 1 minute or longer, show number of minutes
+                    else {
+                        clone.querySelector(".busdue").innerHTML = "Due";
+                    }
+                    document.querySelector("#top-right").appendChild(clone);
+                });
+            }).catch(err => {
+                console.log("Unparsable JSON, ignoring...");
+                console.error(err);
+            });
+        }
+        window.onload = async () => {
+            // sync bus data
+            syncBusData();
+            setInterval(syncBusData, 30000);
+            // sync time
+            var time = await getTime();
+            changeTimer(new Date(time));
+            recurseTimer();
+            document.body.style.opacity = '1';
+        }
+        function recurseTimer() {
+            var now = Date.now();
+            var next = (parseInt(now/1000) + 1) * 1000;
+            var diff = next - now;
+            changeTimer(new Date(now));
+            setTimeout(recurseTimer, diff);
+        }
+        function msToTime(time) {
+            var d = new Date (1000 * Math.round (time/1000));
+            function pad(i) { return ('0'+i).slice(-2); }
+            return d.getUTCHours() + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds());
+        }
+        function changeTimer(time) {
+            window.currentTime = time;
+            document.querySelector("#clocktime").innerHTML = window.currentTime.toLocaleTimeString();
+            document.querySelector("#clockdate").innerHTML = window.currentTime.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            Array.from(document.querySelectorAll(".worldtime")).map((em) => {
+                var intlTime = window.currentTime.toLocaleTimeString("en-US", {timeZone: em.getAttribute("timezone")});
+                em.querySelector("p").innerHTML = intlTime;
+            })
+        }
+    </script>
+</body>
+</html>
