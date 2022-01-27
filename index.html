@@ -300,6 +300,10 @@
             changeTimer(new Date(time));
             recurseTimer();
             document.body.style.opacity = '1';
+            // ensure weather refresh periodically
+            setInterval(() => {
+                document.querySelector("#weatherwidget-io-0").src = document.querySelector("#weatherwidget-io-0").src
+            }, 1000*60*30);
         }
         function recurseTimer() {
             var now = Date.now();
