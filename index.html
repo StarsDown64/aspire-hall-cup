@@ -64,7 +64,7 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1%;
+            margin: 1.25% 0 1.25% 0;
         }
         .busroute .busnum { margin: 0.5%; width: 100%; font-size: 1.5vw } 
         .busroute .busdue { margin: 0.5%; font-size: 1.5vw } 
@@ -144,7 +144,7 @@
 <body>
     <div class="row" style="height: calc(7% - 1px);  background: black; border-bottom: 1px solid gray; display: flex; align-items: center;">
         <p id="ticker" style="margin-top: 1.1%; margin-left: 1%; color: gold; font-size: 1vw">
-            Your <b>biweekly active meetings</b> are Wednesdays at 6pm. Next one is <b>Mar 9th</b>!
+            Your <b>biweekly active meetings</b> are Wednesdays at 6pm. Next one is <b>Apr 6th</b>!
         </p>
     </div>
     <div class="row" style="height: 50%">
@@ -222,7 +222,7 @@
                         <h3>New Delhi</h3><p>00:00 am</p>
                     </div>
                     <div class="worldtime" timezone="Europe/Kiev">
-                        <h3>Kiev/Kyiv</h3><p>00:00 am</p>
+                        <h3>Kyiv</h3><p>00:00 am</p>
                     </div>
                     <div class="worldtime" timezone="Asia/Hong_Kong">
                         <h3>Beijing</h3><p>00:00 am</p>
@@ -244,7 +244,7 @@
         }
         function syncBusData () {
             console.log("Synced at " + new Date().toLocaleTimeString());
-            fetch('busdata').then(v => v.json()).then(j => {
+            fetch('busdata', {cache: "no-store"}).then(v => v.json()).then(j => {
                 window.buscontent = j;
                 if (window.buscontent.routeStopSchedules.length == 0) {
                     Array.from(document.querySelectorAll(".busroute")).slice(1).forEach(e => {
@@ -271,6 +271,7 @@
                     var departsAt = new Date(route.stopTimes[0].estimatedDepartTimeUtc);
                     var now = new Date();
                     var diff = departsAt - now;
+                    //alert(departsAt.toString() + ", " + now.toString());
                     // if arriving in the next minute, say due
                     if (diff > 60000) {
                         var min = parseInt(diff / 60000);
