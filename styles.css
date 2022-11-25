@@ -1,0 +1,236 @@
+@font-face {
+  font-family: Formata;
+  src: url(formata-regular.otf);
+}
+
+html {
+  font-family: Formata;
+  margin: 1.5rem;
+}
+
+#logo {
+  text-align: center;
+  width: fit-content;
+  display: inline-block;
+}
+
+#hknlogo {
+  width: 6rem;
+}
+
+#logo-title {
+  margin-top: 0rem;
+}
+
+#title {
+  display: inline-block;
+  padding-left: 3rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%; 
+  height: fit-content;
+}
+
+.bottom-row {
+  align-items: center;
+}
+
+#clocktime {
+  font-size: 32rem;
+  letter-spacing: 1rem;
+  margin-top: 1rem;
+  margin-bottom: -6rem;
+}
+
+span.clocktime {
+  min-width: 20rem;
+  display: inline-block;
+}
+
+.clockdate {
+  margin-left: 6rem;
+  font-size: 4rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+#weatherWidget {
+  font-family: Formata;
+}
+
+#top-right {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#bustime {
+  margin-left: auto;
+}
+
+.worldtime {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-size: 2rem;
+}
+
+.worldtime h3 {
+  margin-bottom: 1rem;
+}
+.worldtime p {
+  margin-top: 1rem;
+}
+
+#worldtimes {
+  justify-content: space-between;
+}
+
+.weather {
+  font-size: 1.5rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  width: 20rem;
+}
+
+.weather h1 {
+  font-size: 4rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+#title h1 {
+  font-size: 4rem;
+}
+
+/*
+        h2, h3, p {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+        }
+        p {
+            font-weight: 400;
+        }
+        #hknlogo {
+            width: 75%;
+        }
+        .subrow {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            justify-content: space-between;
+        }
+        .subrow p {
+            margin: 0;
+        }
+        .panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        #top-left, #bottom-left {
+            width: 22.5%!important;
+            justify-content: space-evenly;
+        }
+        #bottom-left p {
+            text-align: center;
+        }
+        #top-left, #top-right {
+            border-bottom: 1px solid gray;
+        }
+        #top-right {
+            width: 75.5%!important;
+            padding: 1%;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+        #top-right .busroute {
+            width: 30%;
+            height: auto;
+            border: 1px solid rgba(255, 128, 64, 0.25);
+            border-radius: 2%;
+            padding: 1%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1%;
+        }
+        .busroute .busnum { margin: 0.5%; width: 100%; font-size: 1.5vw } 
+        .busroute .busdue { margin: 0.5%; font-size: 1.5vw } 
+        .busroute .busname { margin: 0.5%; width: 100%; font-size: 1vw } 
+        html {
+            width: 100vw;
+            height: 100vh;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        #bottom-right {
+            background-color: rgba(5, 5, 40);
+        }
+        #bottom-right h2, #bottom-right h3, #bottom-right p {
+            color: #eee;
+        }
+        #top-right {
+            background-color: rgba(64, 9, 0);
+        }
+        #top-right h2, #top-right h3, #top-right p {
+            color: #eee;
+        }
+        #bottom-right {
+            align-items: center;
+            justify-content: center;
+        }
+        #bottom-right .row {
+            height: 95%;
+            align-items: center;
+            justify-content: space-evenly;
+        } 
+        #bottom-right .row .col {
+            width: 50%;
+        }
+        #bottom-right .row .col:last-child {
+            width: 40%;
+            margin-right: 5px;
+        }
+        #clocktime {
+            font-family: Arial;
+            font-size: 2.25vw;
+        }
+        .clocktext {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5vw;
+            margin: 5px 0 5px 0;
+        }
+        .worldtime {
+            width: 27.5%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 1px solid rgba(64, 128, 255, 0.5);
+            border-radius: 3%;
+            padding: 1.1%;
+            margin-bottom: 0.75%;
+        }
+        .worldtime * {
+            margin: 8px 0 8px 0;
+            font-size: 1.2vw;
+        }
+        /* @keyframes anim-ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(98vw, 0, 0); }
+        }
+        #ticker {
+            animation: anim-ticker 4s linear infinite;
+        } */
