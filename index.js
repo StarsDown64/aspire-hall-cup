@@ -6,7 +6,7 @@ function getTime() {
   })
 }
 function syncBusData() {
-  console.log("Synced at " + new Date().toLocaleTimeString());
+  // fetch('https://raw.githubusercontent.com/HKN-Beta/hkn-lounge/main/sampleBusData.json').then(v => v.json()).then(j => {
   fetch('https://hkndisplay.ecn.purdue.edu/busdata').then(v => v.json()).then(j => {
     window.buscontent = j;
     if (window.buscontent.routeStopSchedules.length == 0) {
@@ -24,6 +24,10 @@ function syncBusData() {
         e.remove();
       });
     }
+    window.buscontent.routeStopSchedules.sort(function(a, b) {
+      return new Date(a.stopTimes[0].estimatedDepartTimeUtc)
+        - new Date(b.stopTimes[0].estimatedDepartTimeUtc);
+    })
     window.buscontent.routeStopSchedules.forEach(route => {
       var clone = Array.from(document.querySelectorAll(".busroute")).slice(-1)[0].cloneNode(true);
       clone.querySelector(".busnum").innerHTML = "Route " + route.routeNumber;
@@ -47,19 +51,34 @@ function syncBusData() {
     console.error(err);
   });
 }
+
+function randomizeFloat() {
+  let rectangles = [document.querySelector("#red-rectangle"),
+  document.querySelector("#yellow-rectangle"),
+  document.querySelector("#blue-rectangle")];
+  let offsetMax = 3;
+  for (rectangle of rectangles) {
+    let offsetX = Math.random() * 2 * offsetMax - offsetMax;
+    let offsetY = Math.random() * 2 * offsetMax - offsetMax;
+    rectangle.style.setProperty('--x-offset', offsetX + 'rem');
+    rectangle.style.setProperty('--y-offset', offsetY + 'rem');
+  }
+}
 window.onload = async () => {
   getTemperature();
-  setInterval(getTemperature, 30000); 
+  setInterval(getTemperature, 30000);
+  randomizeFloat();
+  setInterval(randomizeFloat, 24000);
   syncBusData();
   setInterval(syncBusData, 30000);
   var time = await getTime();
   changeTimer(new Date(time));
   recurseTimer();
   document.body.style.opacity = '1';
-  // ensure weather refresh periodically
-  setInterval(() => {
-    document.querySelector("#weatherwidget-io-0").src = document.querySelector("#weatherwidget-io-0").src
-  }, 1000 * 60 * 30);
+  time = new Date();
+  if (time.getMonth() == 11) {
+    loadSnow();
+  }
 }
 function recurseTimer() {
   var now = Date.now();
@@ -75,26 +94,45 @@ function msToTime(time) {
 }
 function changeTimer(time) {
   window.currentTime = time;
-  document.querySelector("#clocktime").innerHTML = 
-    window.currentTime.toLocaleTimeString("en-US", 
+  document.querySelector("#clocktime").innerHTML =
+    window.currentTime.toLocaleTimeString("en-US",
       { hour: "numeric", minute: "2-digit" }).replace("PM", "").replace("AM", "");
-  // document.querySelector(".clocktime.hour").innerHTML = checkTime(window.currentTime.getHours());
-  // document.querySelector(".clocktime.minute").innerHTML = checkTime(window.currentTime.getMinutes());
-  // document.querySelector(".clocktime.second").innerHTML = checkTime(window.currentTime.getSeconds());
-  document.querySelector("#clockdate").innerHTML = 
-    window.currentTime.toLocaleDateString("en-US", 
+  document.querySelector("#clockdate").innerHTML =
+    window.currentTime.toLocaleDateString("en-US",
       { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   Array.from(document.querySelectorAll(".worldtime")).map((em) => {
-    var intlTime = window.currentTime.toLocaleTimeString("en-US", 
+    var intlTime = window.currentTime.toLocaleTimeString("en-US",
       { timeZone: em.getAttribute("timezone"), hour: "2-digit", minute: "2-digit" });
     em.querySelector("p").innerHTML = intlTime;
   })
+
+  if (window.currentTime.getHours() > 16 || window.currentTime.getHours() < 7) {
+    if (document.documentElement.getAttribute('data-theme') != 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    if (document.querySelector('#hknlogo').src != 'hkn-light.png') {
+      document.querySelector('#hknlogo').src = 'hkn-light.png';
+    }
+  } else {
+    if (document.documentElement.getAttribute('data-theme') != 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    if (document.querySelector('#hknlogo').src != 'hkn.png') {
+      document.querySelector('#hknlogo').src = 'hkn.png';
+    }
+  }
+}
+
+function loadSnow() {
+  for (let i = 0; i < 200; i++) {
+    document.querySelector("body").innerHTML =
+      '<div class="snow"></div>' + document.querySelector("body").innerHTML;
+  }
 }
 
 function getTemperature() {
   fetch('https://api.weather.gov/gridpoints/IND/29,96/forecast').then(v => v.json()).then(j => {
     currentWeather = j.properties.periods[0];
-    console.log(currentWeather);
     document.querySelector("#temp").innerHTML = currentWeather.temperature;
     document.querySelector("#shortforecast").innerHTML = currentWeather.shortForecast
   }).catch(err => {

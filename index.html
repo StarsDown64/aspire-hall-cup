@@ -6,17 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="snow.css">
   <title>HKN Kiosk</title>
 </head>
 
 <body>
-
+  <div class="background">
+    <div id="red-rectangle" class="background-rectangle"></div>
+    <div id="blue-rectangle" class="background-rectangle"></div>
+    <div id="yellow-rectangle" class="background-rectangle"></div>
+  </div>
   <div class="row" style="height: 50%">
     <div class="panel" id="top-left">
       <div class="row">
         <div id="logo">
-          <h3 id="logo-title"> Eta Kappa Nu </h3>
-          <img id="hknlogo" src="hkn.png">
+          <picture>
+            <img id="hknlogo" src="hkn.png">
+            <picture>
         </div>
         <div id="title">
           <h1>Welcome to the HKN Lounge, Est. 1968</h1>
@@ -42,18 +48,20 @@
     </div>
 
     <div class="panel" id="top-right">
-      <div>
-        <h1 class="busnum">Bus Schedule</h1>
-        <h2 class="busname">Electrical Engineering</h2>
+      <div id="bustitle">
+        <h1 class="busnum">EE Bus Stop</h1>
+        <!-- <h2 class="busname">Electrical Engineering</h2> -->
       </div>
-      <div class="busroute">
-        <div class="row">
-          <div class="col">
-            <h2 class="busnum"></h2>
-            <h3 class="busname"></h3>
-          </div>
-          <div class="col" id="bustime">
-            <h2 class="busdue">&nbsp;</h2>
+      <div style="display: none;">
+        <div class="busroute">
+          <div class="row">
+            <div class="col buslabel">
+              <h1 class="busname"></h1>
+              <h2 class="busnum"></h2>
+            </div>
+            <div class="col" id="bustime">
+              <h1 class="busdue">&nbsp;</h1>
+            </div>
           </div>
         </div>
       </div>
@@ -134,6 +142,7 @@
   <!--     Your <b>biweekly active meetings</b> are Wednesdays at 6pm. Next one is <b>Jan 26th</b>! -->
   <!--   </p> -->
   <!-- </div> -->
+
   <script src="index.js"></script>
 </body>
 
