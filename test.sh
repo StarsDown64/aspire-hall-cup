@@ -16,6 +16,7 @@ while [[ "$exit" -eq 0 ]]; do
     curl -d "{\"stopCode\":\"$BUSSTOP\"}" \
          -H "Accept-Language: en-US,en" \
          -H "Content-Type: application/json" \
+	 -H "Access-Control-Allow-Origin: *" \
          --silent \
          "https://bus.gocitybus.com/Schedule/GetStopEstimates" \
         | jq -r '.routeStopSchedules[]
