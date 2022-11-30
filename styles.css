@@ -1,0 +1,191 @@
+@font-face {
+  font-family: Formata;
+  src: url(formata-regular.otf);
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body {
+  font-family: Formata;
+  padding: 1.5rem;
+}
+
+.background {
+  position: absolute;
+  z-index: -999;
+  width: 100%;
+  height: 100%;
+}
+
+#logo {
+  text-align: center;
+  width: fit-content;
+  display: inline-block;
+}
+
+#hknlogo {
+  width: 12rem;
+  background: var(--image) center / cover;
+}
+
+#logo-title {
+  margin-top: 0rem;
+}
+
+#title {
+  display: inline-block;
+  padding-left: 3rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%; 
+  height: fit-content;
+}
+
+.bottom-row {
+  align-items: center;
+}
+
+#clocktime {
+  font-size: 32rem;
+  letter-spacing: 1rem;
+  margin-top: 1rem;
+  margin-bottom: -6rem;
+}
+
+span.clocktime {
+  min-width: 20rem;
+  display: inline-block;
+}
+
+.clockdate {
+  margin-left: 6rem;
+  font-size: 4rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+#weatherWidget {
+  font-family: Formata;
+}
+
+#top-right {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.33rem;
+}
+
+#bustime {
+  margin-left: auto;
+}
+
+.buslabel {
+  margin-right: 1.5rem;
+}
+
+.worldtime {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-size: 2rem;
+}
+
+.worldtime h3 {
+  margin-bottom: 1rem;
+}
+.worldtime p {
+  margin-top: 1rem;
+  font-size: 2.5rem;
+}
+
+#worldtimes {
+  justify-content: space-between;
+}
+
+.weather {
+  font-size: 1.5rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  width: 20rem;
+}
+
+.weather h1 {
+  font-size: 4rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.weather h3 {
+  font-size: 2rem;
+}
+
+#title h1 {
+  font-size: 4rem;
+}
+
+#red-rectangle {
+  width: 55rem;
+  height: 55rem;
+  border: 1.2rem solid var(--red);
+  position: relative;
+  right: -3rem;
+}
+
+#blue-rectangle {
+  width: 37rem;
+  height: 37rem;
+  border: 0.8rem solid var(--blue);
+  position: relative;
+  left: 75rem;
+  bottom: 56rem;
+}
+
+#yellow-rectangle {
+  width: 26rem;
+  height: 26rem;
+  border: 1rem solid var(--yellow);
+  position: relative;
+  left: 87rem;
+  bottom: 53rem;
+}
+
+.background-rectangle {
+  transform: scale(1.4, 1) rotate(45deg);
+  animation: float 24s ease-in-out infinite;
+}
+
+:root {
+  --x-offset: -3rem;
+  --y-offset: 3rem;
+  --background-color: white;
+  --text-color: black;
+  --red: #EFA8A4;
+  --blue: #97BDD7;
+  --yellow: #FFE6B0;
+}
+
+[data-theme="dark"] {
+  --background-color: #242424;
+  --text-color: #dbdbdb;
+  --yellow: #86703E;
+  --blue: #024762;
+  --red: #864344;
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0rem) translatex(0rem) scale(1.4, 1) rotate(45deg);  
+  }
+  50% {
+    transform: translatey(var(--y-offset)) translatex(var(--x-offset)) scale(1.4, 1) rotate(45deg);
+  }
+  100% {
+    transform: translatey(0rem) translatex(0rem) scale(1.4, 1) rotate(45deg);  
+  }
+}
