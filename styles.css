@@ -6,6 +6,8 @@
 html {
   background-color: var(--background-color);
   color: var(--text-color);
+  font-size: 11px;
+  overflow: hidden;
 }
 
 body {

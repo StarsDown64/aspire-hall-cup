@@ -28,6 +28,7 @@ function syncBusData() {
       return new Date(a.stopTimes[0].estimatedDepartTimeUtc)
         - new Date(b.stopTimes[0].estimatedDepartTimeUtc);
     })
+    window.buscontent.routeStopSchedules = window.buscontent.routeStopSchedules.slice(0,4);
     window.buscontent.routeStopSchedules.forEach(route => {
       var clone = Array.from(document.querySelectorAll(".busroute")).slice(-1)[0].cloneNode(true);
       clone.querySelector(".busnum").innerHTML = "Route " + route.routeNumber;
