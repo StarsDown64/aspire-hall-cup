@@ -132,7 +132,7 @@ function loadSnow() {
 }
 
 function getTemperature() {
-  fetch('https://api.weather.gov/gridpoints/IND/29,96/forecast').then(v => v.json()).then(j => {
+  fetch('https://api.weather.gov/gridpoints/IND/29,96/forecast/hourly').then(v => v.json()).then(j => {
     currentWeather = j.properties.periods[0];
     document.querySelector("#temp").innerHTML = currentWeather.temperature;
     document.querySelector("#shortforecast").innerHTML = currentWeather.shortForecast
