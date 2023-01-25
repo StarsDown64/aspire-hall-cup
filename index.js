@@ -125,9 +125,9 @@ function changeTimer(time) {
 }
 
 function loadSnow() {
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 25; i++) {
     document.querySelector("body").innerHTML =
-      '<div class="snow"></div>' + document.querySelector("body").innerHTML;
+      '<div class="snow">❆</div>' + document.querySelector("body").innerHTML;
   }
 }
 
