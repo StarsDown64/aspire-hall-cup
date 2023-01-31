@@ -1,7 +1,12 @@
 function getTime() {
   return new Promise(async (resolve, reject) => {
+    try {
     var resp = await fetch("https://worldtimeapi.org/api/ip")
     var timeData = await resp.json()
+    } catch(err) {
+      console.log("Time website is down, using local time as fallback...");
+      resolve("");
+    }
     resolve(timeData.datetime);
   })
 }
