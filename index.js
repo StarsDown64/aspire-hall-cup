@@ -3,11 +3,11 @@ function getTime() {
     try {
     var resp = await fetch("https://worldtimeapi.org/api/ip")
     var timeData = await resp.json()
+    resolve(timeData.datetime);
     } catch(err) {
       console.log("Time website is down, using local time as fallback...");
       resolve("");
     }
-    resolve(timeData.datetime);
   })
 }
 function syncBusData() {
