@@ -8,6 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=hknpi
+ExecStartPre=/bin/sleep 10
 ExecStart=/usr/bin/chromium-browser --kiosk https://hkndisplay.ecn.purdue.edu/
 Environment="DISPLAY=:0"
 
