@@ -1,5 +1,5 @@
 [Unit]
-Description=HKN Kiosk
+Description=Hall Cup Kiosk
 After=network.target
 StartLimitIntervalSec=0
 

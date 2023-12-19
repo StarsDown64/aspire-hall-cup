@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" type="text/css" href="snow.css">
-  <title>HKN Kiosk</title>
+  <title>Hall Cup Kiosk</title>
 </head>
 
 <body>
@@ -21,36 +21,22 @@
       <div class="row">
         <div id="logo">
           <picture>
-            <img id="hknlogo" src="hkn.png">
+            <img id="hknlogo" src="aspire-logo.png">
             <picture>
         </div>
         <div id="title">
-          <h1>Welcome to the HKN Lounge, Est. 1968</h1>
+          <h1>Welcome to Aspire Apartments</h1>
         </div>
       </div>
-      <!-- <h1 class="clocktext clocktime" id="clocktime"><span class="clocktime hour">00</span>:<span -->
-      <!--     class="clocktime minute">00</span> -->
-      <!-- </h1> -->
       <h1 class="clocktext clocktime" id="clocktime">00:00</h1>
       <h2 class="clocktext clockdate" id="clockdate">Friday, November 19, 2021</h2>
       <div>
-        <!-- <div -->
-        <!--   style="margin-top: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center"> -->
-        <!--   <img src="bagelcam.gif" style="width: 116px"> -->
-        <!--   <p style="margin: 0; font-size: 1vw">Try our BagelCam!</p> -->
-        <!-- </div> -->
-        <!-- <div -->
-        <!--   style="margin-top: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center"> -->
-        <!--   <img src="home.gif" style="width: 116px"> -->
-        <!--   <p style="margin: 0; font-size: 1vw">Visit HKN online!</p> -->
-        <!-- </div> -->
       </div>
     </div>
 
     <div class="panel" id="top-right">
       <div id="bustitle">
-        <h1 class="busnum">EE Bus Stop</h1>
-        <!-- <h2 class="busname">Electrical Engineering</h2> -->
+        <h1 class="busnum">Hall Cup</h1>
       </div>
       <div style="display: none;">
         <div class="busroute">
@@ -70,14 +56,6 @@
   <div class="row bottom-row">
     <div class="col" style="width: inherit;">
       <div class="row" id="worldtimes">
-        <!-- <div class="panel" id="bottom-left">
-            <h2>Updates</h2>
-            <p>Want to know if bagels/donuts are still available?  <br>Visit <a href="https://bit.ly/bagelcam">bit.ly/bagelcam</a></p>
-            <img src="index.gif">
-            <p>Has the LHC destroyed the Earth yet?<br><b>NO</b></p>
-            <p>I honestly have no idea what else to put here</p>
-        </div> -->
-
         <div class="worldtime" timezone="America/Chicago">
           <h3>Chicago</h3>
           <p>00:00 am</p>
@@ -86,62 +64,28 @@
           <h3>Los Angeles</h3>
           <p>00:00 am</p>
         </div>
-        <!-- <div class="worldtime" timezone="America/Sao_Paulo"> -->
-        <!--   <h3>Rio de Janeiro</h3> -->
-        <!--   <p>00:00 am</p> -->
-        <!-- </div> -->
-        <!-- <div class="worldtime" timezone="Atlantic/Reykjavik"> -->
-        <!--   <h3>Reykjavik</h3> -->
-        <!--   <p>00:00 am</p> -->
-        <!-- </div> -->
         <div class="worldtime" timezone="Europe/London">
           <h3>London</h3>
           <p>00:00 am</p>
         </div>
-        <!-- <div class="worldtime" timezone="Europe/Paris"> -->
-        <!--   <h3>Paris</h3> -->
-        <!--   <p>00:00 am</p> -->
-        <!-- </div> -->
-        <!-- <div class="worldtime" timezone="Africa/Johannesburg"> -->
-        <!--   <h3>Johannesburg</h3> -->
-        <!--   <p>00:00 am</p> -->
-        <!-- </div> -->
         <div class="worldtime" timezone="Asia/Dubai">
           <h3>Dubai</h3>
           <p>00:00 am</p>
         </div>
-        <!-- <div class="worldtime" timezone="Asia/Kolkata"> -->
-        <!--   <h3>New Delhi</h3> -->
-        <!--   <p>00:00 am</p> -->
-        <!-- </div> -->
-        <!-- <div class="worldtime" timezone="Europe/Moscow"> -->
-        <!--   <h3>Moscow</h3> -->
-        <!--   <p>00:00 am</p> -->
-        <!-- </div> -->
         <div class="worldtime" timezone="Asia/Hong_Kong">
           <h3>Hong Kong</h3>
           <p>00:00 am</p>
         </div>
-	<!-- <div class="worldtime" timezone="Australia/Sydney"> -->
-	<!--  <h3>Sydney</h3> -->
-	<!--  <p id="worldtime">00:00 am</p> -->
-	<!-- </div> -->
       </div>
     </div>
 
     <div class="col weather">
       <h2>West Lafayette</h2>
-      <h1><span id="temp">57</span> °F</h1>
-      <h3 id="shortforecast">Chance Light Rain</h3>
+      <h1><span id="temp">##</span> °F</h1>
+      <h3 id="shortforecast">Could not load weather data</h3>
     </div>
   </div>
   </div>
-  <!-- <div class="row" -->
-  <!--   style="height: calc(7% - 1px);  background: black; border-bottom: 1px solid gray; display: flex; align-items: center;"> -->
-  <!--   <p id="ticker" style="margin-top: 1.1%; margin-left: 1%; color: gold; font-size: 1vw"> -->
-  <!--     Your <b>biweekly active meetings</b> are Wednesdays at 6pm. Next one is <b>Jan 26th</b>! -->
-  <!--   </p> -->
-  <!-- </div> -->
 
   <script src="index.js"></script>
 </body>
