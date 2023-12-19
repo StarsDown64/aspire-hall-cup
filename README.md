@@ -1,6 +1,6 @@
 # aspire-hall-cup
 This repo provides code for the displays in the first floor of buildings in Aspire Apartments.
-Adapted from code for the hkn-lounge, created by Niraj Menon and Erik Duxstad.
+Adapted from code for the hkn-lounge by Noah Rediker. Originally created by Niraj Menon and Erik Duxstad.
 
 ## Requirements
 - `chromium`
