@@ -1,6 +1,8 @@
 window.onload = async () => {
   getTemperature();
   setInterval(getTemperature, 60 * 60000);
+  loadChart();
+  setInterval(loadChart, 5000);
   randomizeFloatingDiamonds();
   setInterval(randomizeFloatingDiamonds, 10000);
   updateTimeDependentProperties();
@@ -59,5 +61,34 @@ function getTemperature() {
   }).catch(err => {
     console.log("Unparsable weather data JSON, ignoring...");
     console.error(err);
+  });
+}
+
+function loadChart() {
+  google.charts.load('current', { 'packages': ['corechart'] });
+  google.charts.setOnLoadCallback(drawChart);
+}
+
+function drawChart() {
+  const queryString = encodeURIComponent('SELECT M, P LIMIT 3');
+  const query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lPSRwkYen1jb-YLsJdMFZKDZPInP89nIn2N2UmAF2Ew/gviz/tq?gid=5429304&headers=1&tq=' + queryString);
+  query.send(response => {
+    if (response.isError()) return;
+    const data = response.getDataTable();
+    data.addColumn({ role: 'style' });
+    data.setCell(0, 2, 'red');
+    data.setCell(1, 2, 'green');
+    data.setCell(2, 2, 'blue');
+    const view = new google.visualization.DataView(data);
+    view.setColumns([0, 1, { calc: 'stringify', sourceColumn: 1, type: 'string', role:'annotation' }, 2]);
+    const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(view, {
+      height: 500,
+      width: 700,
+      legend: { position: 'none' },
+      backgroundColor: document.documentElement.getAttribute('data-theme') == 'dark' ? '#242424' : 'white',
+      hAxis: { textStyle: { color: document.documentElement.getAttribute('data-theme') == 'dark' ? '#dbdbdb' : 'black' } },
+      vAxis: { textStyle: { color: document.documentElement.getAttribute('data-theme') == 'dark' ? '#dbdbdb' : 'black' } }
+    });
   });
 }

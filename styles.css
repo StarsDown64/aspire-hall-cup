@@ -28,7 +28,7 @@ body {
   display: inline-block;
 }
 
-#hknlogo {
+#aspirelogo {
   width: 12rem;
   background: var(--image) center / cover;
 }
@@ -76,16 +76,9 @@ span.clocktime {
 
 #top-right {
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 10rem;
   font-size: 1.33rem;
-}
-
-#bustime {
-  margin-left: auto;
-}
-
-.buslabel {
-  margin-right: 1.5rem;
+  text-align: center;
 }
 
 .worldtime {
