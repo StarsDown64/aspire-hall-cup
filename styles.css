@@ -81,21 +81,15 @@ span.clocktime {
   text-align: center;
 }
 
-.worldtime {
-  margin-left: 2rem;
-  margin-right: 2rem;
+.events h1 {
+  font-size: 3rem;
+  margin-left: 10rem;
+}
+.events p {
   font-size: 2rem;
 }
 
-.worldtime h3 {
-  margin-bottom: 1rem;
-}
-.worldtime p {
-  margin-top: 1rem;
-  font-size: 2.5rem;
-}
-
-#worldtimes {
+.events .slot {
   justify-content: space-between;
 }
 
