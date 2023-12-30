@@ -1,8 +1,9 @@
 window.onload = async () => {
   getTemperature();
   setInterval(getTemperature, 60 * 60000);
-  loadChart();
-  setInterval(loadChart, 5000);
+  google.charts.load('current', { 'packages': ['corechart'] });
+  google.charts.setOnLoadCallback(drawChart);
+  setInterval(drawChart, 60 * 60000);
   randomizeFloatingDiamonds();
   setInterval(randomizeFloatingDiamonds, 10000);
   updateTimeDependentProperties();
@@ -62,11 +63,6 @@ function getTemperature() {
     console.log("Unparsable weather data JSON, ignoring...");
     console.error(err);
   });
-}
-
-function loadChart() {
-  google.charts.load('current', { 'packages': ['corechart'] });
-  google.charts.setOnLoadCallback(drawChart);
 }
 
 function drawChart() {
