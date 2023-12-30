@@ -80,11 +80,15 @@ function drawChart() {
     const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
     chart.draw(view, {
       height: 500,
-      width: 700,
+      width: 500,
       legend: { position: 'none' },
       backgroundColor: document.documentElement.getAttribute('data-theme') == 'dark' ? '#242424' : 'white',
       hAxis: { textStyle: { color: document.documentElement.getAttribute('data-theme') == 'dark' ? '#dbdbdb' : 'black' } },
-      vAxis: { textStyle: { color: document.documentElement.getAttribute('data-theme') == 'dark' ? '#dbdbdb' : 'black' } }
+      vAxis: {
+        textStyle: { color: document.documentElement.getAttribute('data-theme') == 'dark' ? '#dbdbdb' : 'black' },
+        gridlines: { count: 0 },
+        textPosition: 'none'
+      }
     });
   });
 }
