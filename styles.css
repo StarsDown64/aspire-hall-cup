@@ -81,16 +81,28 @@ span.clocktime {
   text-align: center;
 }
 
+.events {
+  background-color: white;
+}
+
 .events h1 {
   font-size: 3rem;
   margin-left: 10rem;
+  margin-bottom: 0px;
 }
 .events p {
-  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 .events .slot {
   justify-content: space-between;
+}
+
+.events .slot .col {
+  width: 50%;
 }
 
 .weather {

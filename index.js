@@ -2,8 +2,8 @@ window.onload = async () => {
   getTemperature();
   setInterval(getTemperature, 60 * 60000);
   google.charts.load('current', { 'packages': ['corechart'] });
-  google.charts.setOnLoadCallback(drawChart);
-  setInterval(drawChart, 60 * 60000);
+  google.charts.setOnLoadCallback(querySheets);
+  setInterval(querySheets, 60 * 60000);
   randomizeFloatingDiamonds();
   setInterval(randomizeFloatingDiamonds, 10000);
   updateTimeDependentProperties();
@@ -65,6 +65,11 @@ function getTemperature() {
   });
 }
 
+function querySheets() {
+  drawChart();
+  loadEvents();
+}
+
 function drawChart() {
   const queryString = encodeURIComponent('SELECT M, P LIMIT 3');
   const query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lPSRwkYen1jb-YLsJdMFZKDZPInP89nIn2N2UmAF2Ew/gviz/tq?gid=5429304&headers=1&tq=' + queryString);
@@ -76,7 +81,7 @@ function drawChart() {
     data.setCell(1, 2, 'green');
     data.setCell(2, 2, 'blue');
     const view = new google.visualization.DataView(data);
-    view.setColumns([0, 1, { calc: 'stringify', sourceColumn: 1, type: 'string', role:'annotation' }, 2]);
+    view.setColumns([0, 1, { calc: 'stringify', sourceColumn: 1, type: 'string', role: 'annotation' }, 2]);
     const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
     chart.draw(view, {
       height: 500,
@@ -90,5 +95,27 @@ function drawChart() {
         textPosition: 'none'
       }
     });
+  });
+}
+
+function loadEvents() {
+  // Ensure there is always at least one entry (preferably in the past) so that query function doesn't error out by comparing no values
+  const now = new Date();
+  const queryString = encodeURIComponent(`SELECT B, C, D, E, F WHERE dateDiff(toDate(${Date.now()}), B) < 0 or (dateDiff(toDate(${Date.now()}), B) = 0 and ((D is not null and hour(D) >= ${now.getHours()}) or (D is null and hour(C) + 1 >= ${now.getHours()}))) ORDER BY B, C LIMIT 6`);
+  const query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1axE_elkVrlCjHFO7f_cWSUZVAZ6fCHHkSMbch2UTiQk/gviz/tq?headers=1&tq=' + queryString);
+  query.send(response => {
+    console.log(response);
+    if (response.isError()) return;
+    document.getElementById('eventtitle').innerHTML = `${response.getDataTable().Wf.reverse().length == 0 ? 'No ' : ''}Upcoming Events`;
+    for (let i = 1; i < 4; i++) {
+      for (let j = 1; j < 3; j++) {
+        if (response.getDataTable().Wf.length == 0) {
+          document.getElementById(`eventslot${i}${j}`).innerHTML = '';
+          continue;
+        }
+        const event = response.getDataTable().Wf.pop().c;
+        document.getElementById(`eventslot${i}${j}`).innerHTML = `${event[0].f.split('/').slice(0, 2).join('/')} ${`${event[1].f.split(':').slice(0, 2).join(':')} ${event[1].f.split(' ')[1]}`}${event[2] ? ` - ${event[2].f.split(':').slice(0, 2).join(':')} ${event[2].f.split(' ')[1]}` : ''} (${event[3].v}) - ${event[4].v}`;
+      }
+    }
   });
 }
