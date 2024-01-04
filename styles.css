@@ -82,7 +82,7 @@ span.clocktime {
 }
 
 .events {
-  background-color: white;
+  background-color: var(--background-color);
 }
 
 .events h1 {
