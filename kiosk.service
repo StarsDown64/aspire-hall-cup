@@ -7,9 +7,9 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=hknpi
+User=pi
 ExecStartPre=/bin/sleep 10
-ExecStart=/usr/bin/chromium-browser --kiosk https://hkndisplay.ecn.purdue.edu/
+ExecStart=/usr/bin/chromium-browser --kiosk https://kiosk.starsdown64.me/
 Environment="DISPLAY=:0"
 
 [Install]
