@@ -1,1 +1,0 @@
-unclutter -idle 0.001
