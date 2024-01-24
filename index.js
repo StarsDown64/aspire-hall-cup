@@ -114,7 +114,7 @@ function loadEvents() {
           continue;
         }
         const event = response.getDataTable().Wf.pop().c;
-        document.getElementById(`eventslot${i}${j}`).innerHTML = `${event[0].f.split('/').slice(0, 2).join('/')} ${`${event[1].f.split(':').slice(0, 2).join(':')} ${event[1].f.split(' ')[1]}`}${event[2] ? ` - ${event[2].f.split(':').slice(0, 2).join(':')} ${event[2].f.split(' ')[1]}` : ''} (${event[3].v}) - ${event[4].v}`;
+        document.getElementById(`eventslot${i}${j}`).innerHTML = `${event[4].v}<br>${event[0].f.split('/').slice(0, 2).join('/')} ${event[1].f.split(':').slice(0, 2).join(':')} ${event[1].f.split(' ')[1]}${event[2] ? ` - ${event[2].f.split(':').slice(0, 2).join(':')} ${event[2].f.split(' ')[1]}` : ''} (${event[3].v})`;
       }
     }
   });
