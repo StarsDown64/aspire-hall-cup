@@ -77,9 +77,9 @@ function drawChart() {
     if (response.isError()) return;
     const data = response.getDataTable();
     data.addColumn({ role: 'style' });
-    data.setCell(0, 2, 'red');
-    data.setCell(1, 2, 'green');
-    data.setCell(2, 2, 'blue');
+    data.setCell(0, 2, 'green');
+    data.setCell(1, 2, 'pink');
+    data.setCell(2, 2, 'aqua');
     const view = new google.visualization.DataView(data);
     view.setColumns([0, 1, { calc: 'stringify', sourceColumn: 1, type: 'string', role: 'annotation' }, 2]);
     const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
@@ -104,7 +104,6 @@ function loadEvents() {
   const queryString = encodeURIComponent(`SELECT B, C, D, E, F WHERE dateDiff(toDate(${Date.now()}), B) < 0 or (dateDiff(toDate(${Date.now()}), B) = 0 and ((D is not null and hour(D) >= ${now.getHours()}) or (D is null and hour(C) + 1 >= ${now.getHours()}))) ORDER BY B, C LIMIT 6`);
   const query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1axE_elkVrlCjHFO7f_cWSUZVAZ6fCHHkSMbch2UTiQk/gviz/tq?headers=1&tq=' + queryString);
   query.send(response => {
-    console.log(response);
     if (response.isError()) return;
     document.getElementById('eventtitle').innerHTML = `${response.getDataTable().Wf.reverse().length == 0 ? 'No ' : ''}Upcoming Events`;
     for (let i = 1; i < 4; i++) {
