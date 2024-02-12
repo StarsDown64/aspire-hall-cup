@@ -12,6 +12,7 @@ window.onload = async () => {
   if (time.getMonth() < 2 || time.getMonth() > 10) {
     loadSnow();
   }
+  setInterval(() =>  { if (navigator.onLine) location.reload(); }, 24 * 60 * 60000);
 }
 
 function randomizeFloatingDiamonds() {
@@ -39,10 +40,12 @@ function updateTimeDependentProperties() {
   if (window.currentTime.getHours() > 16 || window.currentTime.getHours() < 7) {
     if (document.documentElement.getAttribute('data-theme') != 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
+      if (window.chart) drawChart();
     }
   } else {
     if (document.documentElement.getAttribute('data-theme') != 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
+      if (window.chart) drawChart();
     }
   }
 }
@@ -71,6 +74,21 @@ function querySheets() {
 }
 
 function drawChart() {
+  if (!navigator.onLine) {
+    window.chart.draw(view, {
+      height: 500,
+      width: 500,
+      legend: { position: 'none' },
+      backgroundColor: document.documentElement.getAttribute('data-theme') == 'dark' ? '#242424' : 'white',
+      hAxis: { textStyle: { color: document.documentElement.getAttribute('data-theme') == 'dark' ? '#dbdbdb' : 'black' } },
+      vAxis: {
+        textStyle: { color: document.documentElement.getAttribute('data-theme') == 'dark' ? '#dbdbdb' : 'black' },
+        gridlines: { count: 0 },
+        textPosition: 'none'
+      }
+    });
+    return;
+  }
   const queryString = encodeURIComponent('SELECT M, P LIMIT 3');
   const query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lPSRwkYen1jb-YLsJdMFZKDZPInP89nIn2N2UmAF2Ew/gviz/tq?gid=5429304&headers=1&tq=' + queryString);
   query.send(response => {
@@ -82,8 +100,8 @@ function drawChart() {
     data.setCell(2, 2, 'aqua');
     const view = new google.visualization.DataView(data);
     view.setColumns([0, 1, { calc: 'stringify', sourceColumn: 1, type: 'string', role: 'annotation' }, 2]);
-    const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-    chart.draw(view, {
+    window.chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    window.chart.draw(view, {
       height: 500,
       width: 500,
       legend: { position: 'none' },
@@ -99,6 +117,7 @@ function drawChart() {
 }
 
 function loadEvents() {
+  if (!navigator.onLine) return;
   // Ensure there is always at least one entry (preferably in the past) so that query function doesn't error out by comparing no values
   const now = new Date();
   const queryString = encodeURIComponent(`SELECT B, C, D, E, F WHERE dateDiff(toDate(${Date.now()}), B) < 0 or (dateDiff(toDate(${Date.now()}), B) = 0 and ((D is not null and hour(D) >= ${now.getHours()}) or (D is null and hour(C) + 1 >= ${now.getHours()}))) ORDER BY B, C LIMIT 6`);
