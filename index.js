@@ -110,6 +110,8 @@ function drawChart() {
       vAxis: {
         textStyle: { color: document.documentElement.getAttribute('data-theme') == 'dark' ? '#dbdbdb' : 'black' },
         gridlines: { count: 0 },
+        minValue: 0,
+        maxValue: 100,
         textPosition: 'none'
       }
     });
